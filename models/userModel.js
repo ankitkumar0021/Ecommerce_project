@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
       default: 0,
     },
   },
-  { timestamps: true }   //naye user ke aane par craated time add krega
+  { timestamps: true } //naye user ke aane par created time add krega
 );
 
 export default mongoose.model("users", userSchema);
