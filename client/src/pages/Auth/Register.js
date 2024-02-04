@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import Layout from "../../components/Layout/Layout";
-import { toast } from "react-toastify";
+import Layout from "./../../components/Layout/Layout";
+import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [phone, setphone] = useState("");
-  const [address, setaddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submitted!");
     try {
       const res = await axios.post("/api/v1/auth/register", {
         name,
@@ -24,8 +25,8 @@ const Register = () => {
         address,
       });
 
-      if (res.data.success) {
-        toast.success("Registration successful!"); // Add a success message here
+      if (res && res.data.success) {
+        toast.success("Registration successful!");
         navigate("/login");
       } else {
         toast.error(res.data.message);
@@ -54,7 +55,7 @@ const Register = () => {
             <input
               type="email"
               value={email}
-              onChange={(e) => setemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className="form-control"
               placeholder="Enter your Email"
               required
@@ -64,7 +65,7 @@ const Register = () => {
             <input
               type="password"
               value={password}
-              onChange={(e) => setpassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter your Password"
@@ -75,7 +76,7 @@ const Register = () => {
             <input
               type="text"
               value={phone}
-              onChange={(e) => setphone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
               className="form-control"
               placeholder="Enter your Phone"
               required
@@ -85,7 +86,7 @@ const Register = () => {
             <input
               type="text"
               value={address}
-              onChange={(e) => setaddress(e.target.value)}
+              onChange={(e) => setAddress(e.target.value)}
               className="form-control"
               placeholder="Enter your Address"
               required
@@ -93,7 +94,7 @@ const Register = () => {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Submit
+            REGISTER
           </button>
         </form>
       </div>
